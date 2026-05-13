@@ -35,17 +35,21 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            mail to: 'sammanhabib22004@gmail.com',
-            subject: "SUCCESS: Smart Campus Build Passed",
-            body: "CI/CD pipeline deployed successfully using WSL Docker Compose"
-        }
-
-        failure {
-            mail to: 'sammanhabib22004@gmail.com',
-            subject: "FAILED: Smart Campus Build Failed",
-            body: "Check Jenkins logs for WSL execution error"
-        }
+   post {
+    success {
+        emailext (
+            to: 'sammanhabib22004@gmail.com',
+            subject: "SUCCESS: Build Passed",
+            body: "Pipeline successful"
+        )
     }
+
+    failure {
+        emailext (
+            to: 'sammanhabib22004@gmail.com',
+            subject: "FAILED: Build Failed",
+            body: "Check Jenkins logs"
+        )
+    }
+}
 }
