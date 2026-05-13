@@ -12,25 +12,25 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                bat 'wsl docker-compose build'
             }
         }
 
         stage('Stop Old Containers') {
             steps {
-                sh 'docker-compose down || true'
+                bat 'wsl docker-compose down || true'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'wsl docker-compose up -d'
             }
         }
 
         stage('Verify') {
             steps {
-                sh 'docker ps'
+                bat 'wsl docker ps'
             }
         }
     }
@@ -40,13 +40,13 @@ pipeline {
         success {
             mail to: 'sammanhabib22004@gmail.com',
             subject: "SUCCESS: Smart Campus Build Passed",
-            body: "Your CI/CD pipeline ran successfully."
+            body: "Pipeline successfully deployed via WSL Docker."
         }
 
         failure {
             mail to: 'sammanhabib22004@gmail.com',
             subject: "FAILED: Smart Campus Build Failed",
-            body: "Check Jenkins console logs."
+            body: "Check Jenkins logs."
         }
     }
 }
