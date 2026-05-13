@@ -12,41 +12,40 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                bat 'wsl docker-compose build'
+                bat 'wsl.exe -e bash -ic "cd /mnt/c/Users/saman/OneDrive/Desktop/smart-campus-portal && docker compose build"'
             }
         }
 
-        stage('Stop Old Containers') {
+        stage('Stop Containers') {
             steps {
-                bat 'wsl docker-compose down || true'
+                bat 'wsl.exe -e bash -ic "cd /mnt/c/Users/saman/OneDrive/Desktop/smart-campus-portal && docker compose down || true"'
             }
         }
 
         stage('Run Containers') {
             steps {
-                bat 'wsl docker-compose up -d'
+                bat 'wsl.exe -e bash -ic "cd /mnt/c/Users/saman/OneDrive/Desktop/smart-campus-portal && docker compose up -d"'
             }
         }
 
         stage('Verify') {
             steps {
-                bat 'wsl docker ps'
+                bat 'wsl.exe -e bash -ic "docker ps"'
             }
         }
     }
 
     post {
-
         success {
             mail to: 'sammanhabib22004@gmail.com',
             subject: "SUCCESS: Smart Campus Build Passed",
-            body: "Pipeline successfully deployed via WSL Docker."
+            body: "CI/CD pipeline deployed successfully using WSL Docker Compose"
         }
 
         failure {
             mail to: 'sammanhabib22004@gmail.com',
             subject: "FAILED: Smart Campus Build Failed",
-            body: "Check Jenkins logs."
+            body: "Check Jenkins logs for WSL execution error"
         }
     }
 }
