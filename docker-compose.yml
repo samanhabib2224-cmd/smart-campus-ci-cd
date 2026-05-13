@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+  database:
+    image: postgres:15
+    container_name: smartcampus_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: smartcampus
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: smartcampus_backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+
+  frontend:
+    # image: nginx:latest
+    build: ./frontend
+    container_name: smartcampus_frontend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+volumes:
+  db_data:

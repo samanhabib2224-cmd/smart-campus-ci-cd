@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Student</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>Register Student</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="courses.html">Courses</a>
+<a href="register.html">Register</a>
+<a href="students.html">Students</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+<input id="name" placeholder="Student Name">
+<input id="email" placeholder="Email">
+<br>
+<button onclick="register()">Submit</button>
+<p id="message"></p>
+</div>
+
+<script>
+function register() {
+fetch("http://localhost:5000/register", {
+method: "POST",
+headers: {"Content-Type": "application/json"},
+body: JSON.stringify({
+name: document.getElementById("name").value,
+email: document.getElementById("email").value
+})
+})
+.then(res => res.text())
+.then(data => document.getElementById("message").innerText = data);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f4f7;
+}
+
+header {
+  background: #1f2937;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  background: #374151;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #f59e0b;
+}
+
+.container {
+  padding: 40px;
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 10px auto;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    height: 120px;
+}
+
+#responseMsg {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Students</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>Registered Students</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="courses.html">Courses</a>
+<a href="register.html">Register</a>
+<a href="students.html">Students</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+<button onclick="loadStudents()">Load Students</button>
+<div id="studentList"></div>
+</div>
+
+<script>
+function loadStudents() {
+fetch("http://localhost:5000/students")
+.then(res => res.json())
+.then(data => {
+document.getElementById("studentList").innerHTML = "";
+data.forEach(student => {
+document.getElementById("studentList").innerHTML += 
+`<div class="card">${student.name} - ${student.email}</div>`;
+});
+});
+}
+</script>
+
+</body>
+</html>
